@@ -17,7 +17,11 @@ function HomeScreen({ navigation }) {
   const fetchNewsData = async () => {
     try {
       const result = await NewsApi.getNews();
-      setData(result.data.articles);
+      if (result.status == 200) {
+        setData(result.data.articles);
+      } else {
+        console.log(result.data.message);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +30,11 @@ function HomeScreen({ navigation }) {
   const fetchNewsSearchResults = async (searchTerm) => {
     try {
       const result = await NewsApi.searchNews(searchTerm);
-      setDataFromSearch(result.data.articles);
+      if (result.status == 200) {
+        setDataFromSearch(result.data.articles);
+      } else {
+        console.log(result.data.message);
+      }
     } catch (error) {
       console.log(error);
     }
