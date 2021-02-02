@@ -1,12 +1,21 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, SafeAreaView, StyleSheet } from "react-native";
+import Constants from "expo-constants";
+import Header from "../components/Header";
 
-function SettingsScreen(props) {
+function SettingsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
+    <SafeAreaView style={styles.screen}>
+      <Header title="Settings" navigation={navigation} />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    paddingTop: Constants.statusBarHeight,
+    flex: 1,
+  },
+});
 
 export default SettingsScreen;

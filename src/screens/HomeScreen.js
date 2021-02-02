@@ -5,7 +5,7 @@ import NewsApi from "../api/news";
 import { List } from "@ui-kitten/components";
 import NewsCard from "../components/NewsCard";
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {

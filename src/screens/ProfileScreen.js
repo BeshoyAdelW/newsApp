@@ -1,12 +1,21 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, SafeAreaView, StyleSheet } from "react-native";
+import Constants from "expo-constants";
+import Header from "../components/Header";
 
-function ProfileScreen(props) {
+function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile!</Text>
-    </View>
+    <SafeAreaView style={styles.screen}>
+      <Header title="Profile" navigation={navigation} />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    paddingTop: Constants.statusBarHeight,
+    flex: 1,
+  },
+});
 
 export default ProfileScreen;

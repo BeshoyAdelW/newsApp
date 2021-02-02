@@ -15,7 +15,6 @@ const BottomTabBar = ({ navigation, state }) => {
   return (
     <React.Fragment>
       <BottomNavigation
-        style={{ marginVertical: 4 }}
         selectedIndex={state.index}
         onSelect={(index) => navigation.navigate(state.routeNames[index])}
       >
