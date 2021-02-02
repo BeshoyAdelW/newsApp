@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Constants from "expo-constants";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import NewsApi from "../api/news";
-import { List } from "@ui-kitten/components";
+import { Icon, List } from "@ui-kitten/components";
 import NewsCard from "../components/NewsCard";
+import { SearchBar } from "../components/SearchBar";
 
 function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
+  const [dataFromSearch, setDataFromSearch] = useState([]);
 
   useEffect(() => {
     fetchNewsData();
@@ -16,7 +18,15 @@ function HomeScreen({ navigation }) {
     try {
       const result = await NewsApi.getNews();
       setData(result.data.articles);
-      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchNewsSearchResults = async (searchTerm) => {
+    try {
+      const result = await NewsApi.searchNews(searchTerm);
+      setDataFromSearch(result.data.articles);
     } catch (error) {
       console.log(error);
     }
@@ -24,10 +34,14 @@ function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.screen}>
+      <SearchBar
+        style={{ width: "80%", flex: 10 }}
+        fetchNewsSearchResults={fetchNewsSearchResults}
+      />
       {data && (
         <List
           style={styles.container}
-          data={data}
+          data={dataFromSearch.length > 0 ? dataFromSearch : data}
           renderItem={({ item }) => <NewsCard item={item} />}
         />
       )}
