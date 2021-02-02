@@ -1,5 +1,4 @@
 import * as React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -21,14 +20,7 @@ const BottomTabBar = ({ navigation, state }) => {
         <BottomNavigationTab
           title="Home"
           icon={(props) => {
-            return (
-              <Ionicons
-                color={props.style.tintColor}
-                name="newspaper-outline"
-                size={24}
-                style={{ marginVertical: 2 }}
-              />
-            );
+            return <Icon {...props} name="trending-up-outline" size={24} />;
           }}
         />
         <BottomNavigationTab
