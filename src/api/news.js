@@ -6,7 +6,7 @@ const api = create({
 
 const getNews = () => {
   const ApiKey = "576d030b0d794182923fdc2ae28e433d";
-  let url = `?country=eg&apiKey=${ApiKey}`;
+  let url = `?country=us&apiKey=${ApiKey}`;
   return api.get(url);
 };
 
